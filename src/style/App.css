@@ -1,0 +1,14 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+.App {
+  display: flex;
+  justify-content: space-around;
+}
+.main-game-logic {
+  display: flex;
+  flex-direction: column;
+}
