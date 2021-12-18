@@ -16,8 +16,7 @@
   font-size: 3rem;
   color: aliceblue;
 }
-.total-wrap {
-}
+
 .current-wrap {
   display: flex;
   flex-direction: column;

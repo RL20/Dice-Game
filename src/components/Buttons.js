@@ -24,7 +24,7 @@ class Buttons extends React.Component {
     this.props.parentCallback();
   };
   render() {
-    const { text, img, classN } = this.props;
+    const { text, img } = this.props;
     return (
       <button className="button-container" onClick={this.onTrigger}>
         <img className="button-image--small" src={this.images[img]} alt={text} />
