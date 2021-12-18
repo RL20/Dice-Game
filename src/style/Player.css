@@ -1,0 +1,33 @@
+.player {
+  width: 40%;
+  height: 100vh;
+  background-color: #d475b3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20%;
+}
+.name {
+  color: #084eef;
+  font-size: 3rem;
+}
+.total {
+  font-size: 3rem;
+  color: aliceblue;
+}
+.total-wrap {
+}
+.current-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  height: 10%;
+  border: 3px solid #bfe9f2;
+  border-radius: 5px;
+  background-color: #3579c6;
+  /* text-align: center; */
+  font-size: 2rem;
+}

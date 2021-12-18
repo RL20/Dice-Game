@@ -20,13 +20,12 @@ class App extends React.Component {
     let currentScore = a + b;
     this.setState({ dice1: a, dice2: b, disable: true });
     const { p1, p2, winScore } = this.state;
+    if (p1.total >= winScore || p2.total >= winScore) {
+      alert("YOU ARE THE WINNER");
+      return;
+    }
     let active = this.activePlayer();
     if (active === "p1") {
-      if (p1.total >= winScore) {
-        alert("YOU ARE THE WINNER");
-
-        return;
-      }
       currentScore !== 12 ? this.updatPlayerScore("p1", currentScore) : this.resetPlayerScore("p1");
     } else {
       currentScore !== 12 ? this.updatPlayerScore("p2", currentScore) : this.resetPlayerScore("p2");
@@ -71,11 +70,11 @@ class App extends React.Component {
       <div className="App">
         <Player name={p1.name} cur={p1.cur} total={p1.total} active={p1.active} />
         <div className="main-game-logic">
-          <Buttons text="NEW GAME" parentCallback={this.resetGame} />
+          <Buttons text="NEW GAME" parentCallback={this.resetGame} img="new_small" />
           <Dice text={dice1} />
           <Dice text={dice2} />
-          <Buttons text="ROLL DICE" parentCallback={this.handleDice} />
-          <Buttons text="HOLD" parentCallback={this.handleHold} />
+          <Buttons text="ROLL DICE" parentCallback={this.handleDice} img="dice_small" />
+          <Buttons text="HOLD" parentCallback={this.handleHold} img="hold_small" />
           <Inputs placeholder="set winning scrore" parentCallback={this.setWinScore} disable={disable} />
         </div>
 

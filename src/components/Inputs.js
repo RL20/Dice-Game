@@ -13,7 +13,7 @@ class Inputs extends React.Component {
     let { placeholder, disable } = this.props;
     return (
       <div>
-        <input type="text" placeholder={placeholder} onChange={this.onTrigger} disabled={disable} />
+        <input className="field input" type="text" placeholder={placeholder} onChange={this.onTrigger} disabled={disable} />
       </div>
     );
   }
