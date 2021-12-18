@@ -19,7 +19,6 @@ class Dice extends React.Component {
         <img src={diceList[text]} alt="" />
       </div>
     );
-    // return <div>{text}</div>;
   }
 }
 

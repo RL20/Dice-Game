@@ -1,4 +1,5 @@
 .player {
+  font-family: cursive;
   width: 40%;
   height: 100vh;
   background-color: #d475b3;
@@ -29,4 +30,7 @@
   background-color: #3579c6;
   /* text-align: center; */
   font-size: 2rem;
+}
+.hidden {
+  visibility: hidden;
 }

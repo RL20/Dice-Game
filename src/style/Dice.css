@@ -3,5 +3,6 @@
   width: 200px;
 }
 img {
-  width: 10.5rem;
+  border-radius: 5px;
+  width: 17vmin;
 }

@@ -2,22 +2,23 @@ import React from "react";
 import "../style/Player.css";
 class Player extends React.Component {
   render() {
-    const { name, total, cur, active } = this.props;
+    const { name, total, cur, active, winnerStyle } = this.props;
     console.log("test", name, total, cur, active);
-
+    console.log("winnerStyle", winnerStyle);
     return (
+      // <div className="player" style={{ backgroundColor: winnerStyle }}>
+
       <div className="player">
         <div className="name">{name}</div>
         <div className="total-wrap">
           <div className="total">{total}</div>
+          <h1 className="hidden" style={{ visibility: `${winnerStyle}` }}>
+            You Won
+          </h1>
         </div>
         <div className="current-wrap">
           <div className="current">{cur}</div>
         </div>
-
-        {/* <h1>{name} </h1>
-        <h1>{total} </h1>
-        <h1>{cur} </h1> */}
       </div>
     );
   }

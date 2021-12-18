@@ -14,10 +14,20 @@
   overflow-x: hidden;
   overflow-y: hidden;
 }
-.main-game-logic {
+/* .main-game-logic {
   width: 20%;
   display: flex;
   gap: 1.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #1e3054;
+} */
+.main-game-logic {
+  padding: 10px;
+  width: 20%;
+  display: flex;
+  gap: 1.5vmin;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -65,7 +75,7 @@
 
 .field {
   margin-top: 2px;
-  width: 10.5rem;
+  width: 17vmin;
   padding: 0.8rem;
   text-align: center;
   border-radius: 5px;
