@@ -1,10 +1,16 @@
 import React from "react";
 import "../style/Player.css";
 class Player extends React.Component {
+  componentDidUpdate(prevprops) {
+    if (prevprops.winnerStyle !== this.props.winnerStyle) {
+      // console.log("diffrent", this.props.winnerStyle);
+      // console.log("diffrent", prevprops.winnerStyle);
+    }
+  }
   render() {
     const { name, total, cur, active, winnerStyle } = this.props;
-    console.log("test", name, total, cur, active);
-    console.log("winnerStyle", winnerStyle);
+    // console.log("test", name, total, cur, active);
+    // console.log("winnerStyle", winnerStyle);
     return (
       // <div className="player" style={{ backgroundColor: winnerStyle }}>
 

@@ -9,11 +9,12 @@ class App extends React.Component {
   state = {
     p1: { name: "Player 1", cur: 0, total: 0, active: true, winnerStyle: "" },
     p2: { name: "Player 2", cur: 0, total: 0, active: false, winnerStyle: "" },
-    dice1: 0,
-    dice2: 0,
+    dices: [0, 0],
     winScore: 100,
     disable: false,
     interval: "",
+    thereIsWinner: false,
+    firstTimeThrow: true,
   };
 
   handleHold = () => {
@@ -23,37 +24,46 @@ class App extends React.Component {
     }));
   };
   handleDice = () => {
-    const diceList = [Math.ceil(Math.random() * 6), Math.ceil(Math.random() * 6)];
-    const [a, b] = diceList;
-    let currentScore = a + b;
-    this.setState({ dice1: a, dice2: b, disable: true });
-    const { p1, p2, winScore } = this.state;
-    if (p1.total >= winScore || p2.total >= winScore) {
-      // this.winnerPresentation(p1);
-      if (p1.total >= winScore) {
-        this.setState((prevState) => ({
-          p1: {
-            ...prevState.p1,
-            winnerStyle: "visible",
-          },
-        }));
-      } else {
-        this.setState((prevState) => ({
-          p2: {
-            ...prevState.p2,
-            winnerStyle: "visible",
-          },
-        }));
-      }
+    const newState = {};
+    const { p1, p2, winScore, thereIsWinner } = this.state;
+    if (!thereIsWinner) {
+      const [diceA, diceB] = [Math.ceil(Math.random() * 6), Math.ceil(Math.random() * 6)];
+      let currentScore = diceA + diceB;
 
-      return;
+      newState.dices = [diceA, diceB];
+      newState.disable = true;
+
+      // this.setState({ dices: [diceA, diceB], disable: true });
+
+      let activeP = this.activePlayer();
+
+      console.log("p1.total", p1.total);
+      let playerWon = (p1.total + currentScore >= winScore && "p1") || (p2.total + currentScore >= winScore && "p2");
+      currentScore !== 12 ? this.updatPlayerScore([activeP], currentScore) : this.resetPlayerScore([activeP]);
+
+      if (playerWon) {
+        console.log("**************************", playerWon);
+        console.log(this.state[playerWon].total);
+        // this.setState({ thereIsWinner: true });
+
+        newState[playerWon] = {
+          ...this.state[playerWon],
+          winnerStyle: "visible",
+        };
+        newState.thereIsWinner = true;
+
+        newState[activeP].total = this.state[activeP].total + currentScore;
+        // this.setState((prevState) => ({
+        //   [playerWon]: {
+        //     ...prevState[playerWon],
+        //     winnerStyle: "visible",
+        //   },
+        //   thereIsWinner: true,
+        // }));
+        // return;
+      }
     }
-    let active = this.activePlayer();
-    if (active === "p1") {
-      currentScore !== 12 ? this.updatPlayerScore("p1", currentScore) : this.resetPlayerScore("p1");
-    } else {
-      currentScore !== 12 ? this.updatPlayerScore("p2", currentScore) : this.resetPlayerScore("p2");
-    }
+    this.setState(newState);
   };
   // //!--------------------------------------------
   updatPlayerScore = (player, curentScore) => {
@@ -72,6 +82,7 @@ class App extends React.Component {
       dice1: 0,
       dice2: 0,
       winScore: 100,
+      thereIsWinner: false,
     }));
   };
   //!--------------------------------------------
@@ -98,7 +109,7 @@ class App extends React.Component {
   // };
 
   render() {
-    const { p1, p2, dice1, dice2, disable } = this.state;
+    const { p1, p2, dices, disable } = this.state;
     console.log("active", p1.winnerStyle);
     console.log("win", this.state.winScore);
     return (
@@ -106,8 +117,8 @@ class App extends React.Component {
         <Player name={p1.name} cur={p1.cur} total={p1.total} active={p1.active} winnerStyle={p1.winnerStyle} />
         <div className="main-game-logic">
           <Buttons text="NEW GAME" parentCallback={this.resetGame} img="new_small" />
-          <Dice text={dice1} />
-          <Dice text={dice2} />
+          <Dice text={dices[0]} />
+          <Dice text={dices[1]} />
           <Buttons text="ROLL DICE" parentCallback={this.handleDice} img="dice_small" />
           <Buttons text="HOLD" parentCallback={this.handleHold} img="hold_small" />
           <Inputs placeholder="Winning score" parentCallback={this.setWinScore} disable={disable} />
