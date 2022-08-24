@@ -4,7 +4,7 @@
 
 ### **Rules and goals**
 
-It is a dice game when two players participate in it.
+A two-player dice game.
 
 The player who manages to reach the target number of points first is the winner.
 
@@ -25,7 +25,7 @@ A player can give up his turn by pressing the HOLD button and the turn will go t
 
 ### **Technology used**
 
-- This game was build in React Class components, HTML, CSS
+- This game was build in RReact Class components, HTML, CSS
 
 - The game is fully responsive.
 
