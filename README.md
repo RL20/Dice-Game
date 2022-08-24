@@ -44,3 +44,8 @@ A player can give up his turn by pressing the HOLD button and the turn will go t
 ### Video
 
 **You can see the steps of the game here ↓**
+
+
+
+https://user-images.githubusercontent.com/51479993/186496254-64aeac5c-3aa6-48b0-ba10-37950bdc8a9c.mp4
+
