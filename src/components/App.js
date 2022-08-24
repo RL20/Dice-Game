@@ -29,6 +29,7 @@ class App extends React.Component {
     if (!thereIsWinner) {
       const [diceA, diceB] = [Math.ceil(Math.random() * 6), Math.ceil(Math.random() * 6)];
       let currentScore = diceA + diceB;
+      const double = diceA === diceB;
 
       newState.dices = [diceA, diceB];
       newState.disable = true;
@@ -39,7 +40,8 @@ class App extends React.Component {
 
       console.log("p1.total", p1.total);
       let playerWon = (p1.total + currentScore >= winScore && "p1") || (p2.total + currentScore >= winScore && "p2");
-      currentScore !== 12 ? this.updatPlayerScore([activeP], currentScore) : this.resetPlayerScore([activeP]);
+      // currentScore !== 12 ? this.updatPlayerScore([activeP], currentScore) : this.resetPlayerScore([activeP]);
+      double ? this.resetPlayerScore([activeP]) : this.updatPlayerScore([activeP], currentScore);
 
       if (playerWon) {
         console.log("**************************", playerWon);
@@ -121,7 +123,9 @@ class App extends React.Component {
           <Dice text={dices[1]} />
           <Buttons text="ROLL DICE" parentCallback={this.handleDice} img="dice_small" />
           <Buttons text="HOLD" parentCallback={this.handleHold} img="hold_small" />
-          <Inputs placeholder="Winning score" parentCallback={this.setWinScore} disable={disable} />
+          <span style={{ color: "white" }}>Default Win score is 100 ↓</span>
+
+          <Inputs placeholder="Insert score" parentCallback={this.setWinScore} disable={disable} />
         </div>
 
         <Player name={p2.name} cur={p2.cur} total={p2.total} active={p2.active} winnerStyle={p2.winnerStyle} />
